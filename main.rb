@@ -5,7 +5,7 @@ require 'optparse'
 require 'gosu'
 
 require_relative 'camera'
-require_relative 'rectangle'
+require_relative 'circle'
 require_relative 'scene'
 require_relative 'window'
 
@@ -32,7 +32,7 @@ OptionParser.new do |opts|
 end.parse!
 
 def make_random_color
-  Gosu::Color.from_hsv(rand(360), rand, 1.0)
+  Gosu::Color.from_hsv(rand(360), rand, 0.8)
 end
 
 ##
@@ -47,9 +47,9 @@ end
 def make_random_object
   center = Vector[rand - 0.5, rand - 0.5]
   mass = rand + 0.5
-  width = mass / 2
+  radius = mass / 4
   color = make_random_color
-  object = Rectangle.new(center, mass, width, width, color)
+  object = Circle.new(center, mass, radius, color)
   give_random_acceleration(object)
   object
 end
