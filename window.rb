@@ -2,23 +2,18 @@ require "matrix"
 
 require "gosu"
 
-require_relative "camera"
-require_relative "rectangle"
-require_relative "scene"
-
 ##
 # Gosu game window for drawing a scene, from the viewpoint of a camera.
 
 class Window < Gosu::Window
-  def initialize(width, height, *args)
-    super
-    @scene = Scene.new
-    @scene.add_object(Rectangle.new(Vector[-1, -1], Vector[1, 1]))
-    @camera = Camera.new(Vector[0, 0], 0.5)
+  def initialize(scene, camera, width, height)
+    super(width, height)
+    @scene = scene
+    @camera = camera
   end
 
   def update
-    # do nothing
+    @scene.update
   end
 
   def window_transform(&block)

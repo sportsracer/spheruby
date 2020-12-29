@@ -2,6 +2,9 @@ require "optparse"
 
 require "gosu"
 
+require_relative "camera"
+require_relative "rectangle"
+require_relative "scene"
 require_relative "window"
 
 options = {
@@ -26,5 +29,19 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-w = Window.new(options[:width], options[:height])
+def create_scene
+  rectangle = Rectangle.new(Vector[0, 0], 1, 1, 1)
+  rectangle.accelerate(Vector[0.01, 0.01])
+
+  scene = Scene.new
+  scene.add_object(rectangle)
+
+  scene
+end
+
+def create_camera
+  Camera.new(Vector[0, 0], 0.5)
+end
+
+w = Window.new(create_scene, create_camera, options[:width], options[:height])
 w.show

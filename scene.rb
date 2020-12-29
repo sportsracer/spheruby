@@ -11,6 +11,12 @@ class Scene
     @objects.append(object)
   end
 
+  def update
+    @objects.each do |object|
+      object.update
+    end
+  end
+
   def draw
     @objects.each do |object|
       object.draw
