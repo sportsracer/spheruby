@@ -1,5 +1,8 @@
-class RigidObject
+# frozen_string_literal: true
 
+##
+# Object with a center of mass and motion.
+class RigidObject
   def initialize(center, mass, velocity = nil)
     super()
     @center = center
@@ -14,5 +17,4 @@ class RigidObject
   def update
     @center += @velocity
   end
-
 end

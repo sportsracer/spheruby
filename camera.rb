@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 ##
 # Transformation from world to viewport coordinates.
-
 class Camera
   def initialize(center, scale)
     super()
@@ -9,8 +10,8 @@ class Camera
   end
 
   def transform(&block)
-    Gosu::scale(@scale, @scale) do
-      Gosu::translate(-@center[0], -@center[1]) do
+    Gosu.scale(@scale, @scale) do
+      Gosu.translate(-@center[0], -@center[1]) do
         block.call
       end
     end

@@ -1,29 +1,31 @@
-require "optparse"
+# frozen_string_literal: true
 
-require "gosu"
+require 'optparse'
 
-require_relative "camera"
-require_relative "rectangle"
-require_relative "scene"
-require_relative "window"
+require 'gosu'
+
+require_relative 'camera'
+require_relative 'rectangle'
+require_relative 'scene'
+require_relative 'window'
 
 options = {
-  :width => 800,
-  :height => 600,
+  width: 800,
+  height: 600
 }
 
 OptionParser.new do |opts|
-  opts.banner = "Usage: #{$0} [-w/--width WIDTH] [-h/--height HEIGHT]"
+  opts.banner = "Usage: #{$PROGRAM_NAME} [-w/--width WIDTH] [-h/--height HEIGHT]"
 
-  opts.on("-w WIDTH", "--width WIDTH", Integer) do |width|
+  opts.on('-w WIDTH', '--width WIDTH', Integer) do |width|
     options[:width] = width
   end
 
-  opts.on("-h HEIGHT", "--height HEIGHT", Integer) do |height|
+  opts.on('-h HEIGHT', '--height HEIGHT', Integer) do |height|
     options[:height] = height
   end
 
-  opts.on("--help") do
+  opts.on('--help') do
     puts opts
     exit
   end

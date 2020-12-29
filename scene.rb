@@ -1,6 +1,7 @@
+# frozen_string_literal: true
+
 ##
 # A collection of objects which can be drawn.
-
 class Scene
   def initialize
     super
@@ -12,14 +13,10 @@ class Scene
   end
 
   def update
-    @objects.each do |object|
-      object.update
-    end
+    @objects.each(&:update)
   end
 
   def draw
-    @objects.each do |object|
-      object.draw
-    end
+    @objects.each(&:draw)
   end
 end
