@@ -1,3 +1,8 @@
 source 'https://rubygems.org'
 
-gem "gosu"
+# runtime
+gem 'gosu'
+
+# development
+gem 'rake', require: false
+gem 'rubocop', require: false
