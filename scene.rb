@@ -13,10 +13,25 @@ class Scene
   end
 
   def update
+    apply_gravity
     @objects.each(&:update)
   end
 
   def draw
     @objects.each(&:draw)
+  end
+
+  private
+
+  ##
+  # Calculate gravitational attraction between all objects.
+  def apply_gravity
+    @objects.each do |object1|
+      @objects.each do |object2|
+        next if object1 == object2
+
+        object1.attract(object2)
+      end
+    end
   end
 end

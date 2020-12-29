@@ -31,13 +31,36 @@ OptionParser.new do |opts|
   end
 end.parse!
 
+def make_random_color
+  Gosu::Color.from_hsv(rand(360), rand, 1.0)
+end
+
+##
+# Give a random nudge to object.
+def give_random_acceleration(object)
+  force = Vector[rand * 0.02 - 0.01, rand * 0.02 - 0.01]
+  object.accelerate(force)
+end
+
+##
+# Create a random object to be used in our demo scene.
+def make_random_object
+  center = Vector[rand - 0.5, rand - 0.5]
+  mass = rand + 0.5
+  width = mass / 2
+  color = make_random_color
+  object = Rectangle.new(center, mass, width, width, color)
+  give_random_acceleration(object)
+  object
+end
+
+##
+# Create a nice demo scene with some random objects.
 def create_scene
-  rectangle = Rectangle.new(Vector[0, 0], 1, 1, 1)
-  rectangle.accelerate(Vector[0.01, 0.01])
-
   scene = Scene.new
-  scene.add_object(rectangle)
-
+  10.times do
+    scene.add_object(make_random_object)
+  end
   scene
 end
 
