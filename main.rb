@@ -1,5 +1,8 @@
 require "optparse"
+
 require "gosu"
+
+require_relative "window"
 
 options = {
   :width => 800,
@@ -23,5 +26,5 @@ OptionParser.new do |opts|
   end
 end.parse!
 
-w = Gosu::Window.new(options[:width], options[:height])
+w = Window.new(options[:width], options[:height])
 w.show
