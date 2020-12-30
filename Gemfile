@@ -7,4 +7,5 @@ gem 'gosu'
 
 # development
 gem 'rake', require: false
+gem 'rspec', require: false
 gem 'rubocop', require: false

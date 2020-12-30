@@ -2,10 +2,21 @@
 
 require 'rubocop/rake_task'
 
-task default: %w[lint]
+task default: %w[run]
 
-##
-# Autocorrect any safe mistakes, fail if not all issues could be resolved
+# rubocop:disable Lint/SuppressedException
+begin
+  require 'rspec/core/rake_task'
+  RSpec::Core::RakeTask.new(:spec)
+rescue LoadError
+end
+# rubocop:enable Lint/SuppressedException
+
 RuboCop::RakeTask.new(:lint) do |t|
-  t.options = %w[--auto-correct lib]
+  t.options = %w[lib/ spec/ Rakefile Gemfile]
+end
+
+desc('Run the app')
+task :run do
+  sh 'ruby lib/main.rb'
 end

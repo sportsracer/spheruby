@@ -1,1 +1,5 @@
+# bundling artefacts
+.bundle
+
+# editor-specific files
 .idea

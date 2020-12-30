@@ -26,12 +26,12 @@ class RigidObject
   ##
   # Apply gravitational attraction to another object.
   def attract(other)
-    self_to_other = (other.center - @center)
-    distance = self_to_other.magnitude
+    other_to_self = (@center - other.center)
+    distance = other_to_self.magnitude
     return if distance < Float::EPSILON
 
     force_magnitude = G * @mass * other.mass / (distance**2)
-    acceleration = self_to_other * force_magnitude
-    accelerate(acceleration)
+    acceleration = other_to_self * force_magnitude
+    other.accelerate(acceleration)
   end
 end
