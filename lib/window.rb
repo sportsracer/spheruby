@@ -14,7 +14,7 @@ class Window < Gosu::Window
   end
 
   def update
-    @scene.update
+    @scene.update!
   end
 
   def window_transform(&block)

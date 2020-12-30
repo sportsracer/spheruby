@@ -12,9 +12,9 @@ class Scene
     @objects.append(object)
   end
 
-  def update
+  def update!
     apply_gravity
-    @objects.each(&:update)
+    @objects.each(&:update!)
   end
 
   def draw
@@ -30,7 +30,7 @@ class Scene
       @objects.each do |object2|
         next if object1 == object2
 
-        object1.attract(object2)
+        object1.attract!(object2)
       end
     end
   end

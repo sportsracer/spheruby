@@ -19,19 +19,19 @@ class RigidObject
     @velocity += force / @mass
   end
 
-  def update
+  def update!
     @center += @velocity
   end
 
   ##
-  # Apply gravitational attraction to another object.
-  def attract(other)
-    other_to_self = (@center - other.center)
-    distance = other_to_self.magnitude
+  # Apply gravitational attraction based on another object's position and mass.
+  def attract!(other)
+    self_to_other = (other.center - @center)
+    distance = self_to_other.magnitude
     return if distance < Float::EPSILON
 
     force_magnitude = G * @mass * other.mass / (distance**2)
-    acceleration = other_to_self * force_magnitude
-    other.accelerate(acceleration)
+    acceleration = self_to_other * force_magnitude
+    accelerate(acceleration)
   end
 end
