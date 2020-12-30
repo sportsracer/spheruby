@@ -34,4 +34,10 @@ class RigidObject
     acceleration = self_to_other * force_magnitude
     accelerate(acceleration)
   end
+
+  ##
+  # Calculate whether this object collides with another. Return surface point and normal vector, or nil.
+  def collision(_)
+    raise 'Not implemented'
+  end
 end
