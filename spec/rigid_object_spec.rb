@@ -6,6 +6,8 @@ require 'rspec'
 
 require 'rigid_object'
 
+# rubocop:disable Metrics/BlockLength
+
 describe 'RigidObject' do
   it 'moves when it has a velocity' do
     rigid_object = RigidObject.new(Vector[-2, -3], 1, Vector[1, 4])
@@ -19,7 +21,8 @@ describe 'RigidObject' do
     rigid_object = RigidObject.new(Vector[0, 0], 1)
 
     force = Vector[2, 1]
-    rigid_object.accelerate(force)
+    rigid_object.accelerate!(force)
+    rigid_object.update!
 
     expect(rigid_object.velocity).to eq Vector[2, 1]
   end
@@ -29,6 +32,7 @@ describe 'RigidObject' do
     light_object = RigidObject.new(Vector[1, 1], 1)
 
     rigid_object1.attract!(light_object)
+    rigid_object1.update!
 
     expect(rigid_object1.velocity[0]).to be > 0
     expect(rigid_object1.velocity[1]).to be > 0
@@ -39,8 +43,11 @@ describe 'RigidObject' do
     heavy_object = RigidObject.new(Vector[1, 1], 10)
 
     rigid_object2.attract!(heavy_object)
+    rigid_object2.update!
 
     expect(rigid_object2.velocity[0]).to be > rigid_object1.velocity[0]
     expect(rigid_object2.velocity[1]).to be > rigid_object1.velocity[1]
   end
 end
+
+# rubocop:enable Metrics/BlockLength

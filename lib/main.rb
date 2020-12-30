@@ -36,30 +36,25 @@ def make_random_color
 end
 
 ##
-# Give a random nudge to object.
-def give_random_acceleration(object)
-  force = Vector[rand * 0.02 - 0.01, rand * 0.02 - 0.01]
-  object.accelerate(force)
-end
-
-##
 # Create a random object to be used in our demo scene.
-def make_random_object
-  center = Vector[rand - 0.5, rand - 0.5]
+def make_random_object(angle)
+  center = Vector[Gosu.offset_x(angle, 1), Gosu.offset_y(angle, 1)]
   mass = rand + 0.5
   radius = mass / 4
   color = make_random_color
-  object = Circle.new(center, mass, radius, color)
-  give_random_acceleration(object)
-  object
+  velocity = center * -0.01 * rand
+  Circle.new(center, mass, radius, color, velocity, 0.6)
 end
 
 ##
 # Create a nice demo scene with some random objects.
 def create_scene
   scene = Scene.new
-  10.times do
-    scene.add_object(make_random_object)
+  num_objects = 4
+  (1..num_objects).each do |i|
+    # Compute an angle to space out objects around the center of the screen
+    angle = 360 / num_objects * i
+    scene.add_object(make_random_object(angle))
   end
   scene
 end
