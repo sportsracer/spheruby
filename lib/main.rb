@@ -50,7 +50,7 @@ end
 # Create a nice demo scene with some random objects.
 def create_scene
   scene = Scene.new
-  num_objects = 4
+  num_objects = 8
   (1..num_objects).each do |i|
     # Compute an angle to space out objects around the center of the screen
     angle = 360 / num_objects * i

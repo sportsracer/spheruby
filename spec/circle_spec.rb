@@ -6,6 +6,8 @@ require 'rspec'
 
 require 'circle'
 
+# rubocop:disable Metrics/BlockLength
+
 describe 'Circle' do
   it 'collides with close-by circles' do
     circle1 = Circle.new(Vector[0, 0], 1, 0.8 + Float::EPSILON)
@@ -27,4 +29,23 @@ describe 'Circle' do
 
     expect(coll).to be_nil
   end
+
+  it 'changes its velocity when colliding with another object' do
+    circle1 = Circle.new(Vector[0, 0], 1, 0.8 + Float::EPSILON, Gosu::Color::WHITE, Vector[0.1, 0])
+    circle2 = Circle.new(Vector[2, 0], 1, 1.2 + Float::EPSILON, Gosu::Color::WHITE, Vector[-0.1, 0])
+
+    collided = circle1.send(:collide_with!, circle2)
+    circle1.update!
+
+    # Assert that circle1 collided with the other, and is now moving away from it
+    expect(collided).to eq true
+    expect(circle1.velocity[0]).to be < 0
+    expect(circle1.velocity[1]).to be_within(Float::EPSILON).of(0.0)
+
+    # Now that circle1 is moving away from the other, we do not want it to collide with circle2 a second time
+    collided = circle1.send(:collide_with!, circle2)
+    expect(collided).to eq false
+  end
 end
+
+# rubocop:enable Metrics/BlockLength

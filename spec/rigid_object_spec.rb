@@ -28,25 +28,25 @@ describe 'RigidObject' do
   end
 
   it 'attracts other objects due to gravity' do
-    rigid_object1 = RigidObject.new(Vector[0, 0], 1)
+    object1 = RigidObject.new(Vector[0, 0], 1)
     light_object = RigidObject.new(Vector[1, 1], 1)
 
-    rigid_object1.attract!(light_object)
-    rigid_object1.update!
+    object1.send(:attract!, light_object)
+    object1.update!
 
-    expect(rigid_object1.velocity[0]).to be > 0
-    expect(rigid_object1.velocity[1]).to be > 0
+    expect(object1.velocity[0]).to be > 0
+    expect(object1.velocity[1]).to be > 0
 
     # Check that higher mass leads to more attraction force
 
-    rigid_object2 = RigidObject.new(Vector[0, 0], 1)
+    object2 = RigidObject.new(Vector[0, 0], 1)
     heavy_object = RigidObject.new(Vector[1, 1], 10)
 
-    rigid_object2.attract!(heavy_object)
-    rigid_object2.update!
+    object2.send(:attract!, heavy_object)
+    object2.update!
 
-    expect(rigid_object2.velocity[0]).to be > rigid_object1.velocity[0]
-    expect(rigid_object2.velocity[1]).to be > rigid_object1.velocity[1]
+    expect(object2.velocity[0]).to be > object1.velocity[0]
+    expect(object2.velocity[1]).to be > object1.velocity[1]
   end
 end
 
