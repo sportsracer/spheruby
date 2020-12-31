@@ -4,6 +4,8 @@ Simple physical simulation of spheres that attract each other through gravity, a
 
 Little toy project I made to teach myself the basics of Ruby.
 
+![Example scene](doc/spheruby.gif)
+
 ## Installation
 
 Tested on Ruby 2.7.2.
