@@ -6,17 +6,14 @@ require 'rspec'
 
 require 'circle'
 
-# rubocop:disable Metrics/BlockLength
-
 describe 'Circle' do
   it 'collides with close-by circles' do
     circle1 = Circle.new(Vector[0, 0], 1, 0.8 + Float::EPSILON)
     circle2 = Circle.new(Vector[2, 0], 1, 1.2 + Float::EPSILON)
 
-    point, normal = circle1.collision(circle2)
+    depth, normal = circle1.collision(circle2)
 
-    expect(point[0]).to be_within(Float::EPSILON).of(0.8)
-    expect(point[1]).to be_within(Float::EPSILON).of(0.0)
+    expect(depth).to be_between(0, 4 * Float::EPSILON)
     expect(normal[0]).to be_within(Float::EPSILON).of(1.0)
     expect(normal[1]).to be_within(Float::EPSILON).of(0.0)
   end
@@ -47,5 +44,3 @@ describe 'Circle' do
     expect(collided).to eq false
   end
 end
-
-# rubocop:enable Metrics/BlockLength

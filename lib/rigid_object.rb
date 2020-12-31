@@ -6,9 +6,10 @@ require_relative 'vector_reflect'
 # Object with a center of mass and motion.
 class RigidObject
   # Gravitational constant, increased by a few orders of magnitude to make things interesting.
-  G = 6.67408E-6
+  G = 6.67408E-5
 
-  NUDGE = 0.005
+  # Percentage of collision overlap to correct for every tick
+  NUDGE = 0.1
 
   def initialize(center, mass, velocity = nil, bounciness = 1.0)
     super()
@@ -73,16 +74,17 @@ class RigidObject
     return false if point_normal.nil?
 
     # Bounce off the other object
-    _, normal = point_normal
+    depth, normal = point_normal
 
     impulse = collision_impulse(other, normal)
     return false if impulse.nil?
 
     accelerate!(normal * impulse / @mass)
-    true
 
     # ... And nudge outward, to avoid getting stuck within the other object
-    # @nudge += normal * -NUDGE
+    @nudge += normal * (-NUDGE * depth)
+
+    true
   end
 
   ##

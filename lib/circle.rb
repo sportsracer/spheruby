@@ -29,13 +29,11 @@ class Circle < RigidObject
     # Two circles are colliding if their centers are closer than the sum of their radii
     self_to_other = (other.center - @center)
     distance = self_to_other.magnitude
-    return if distance > (other.radius + @radius)
+    collision_depth = other.radius + @radius - distance
+    return if collision_depth.negative?
 
-    # Calculate collision point and normal
-    direction = self_to_other.normalize
-    point = @center + direction * @radius
-
-    [point, direction]
+    normal = self_to_other.normalize
+    [collision_depth, normal]
   end
 end
 

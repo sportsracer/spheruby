@@ -42,7 +42,7 @@ def make_random_object(angle)
   mass = rand + 0.5
   radius = mass / 4
   color = make_random_color
-  velocity = center * -0.01 * rand
+  velocity = center * 0.02 * rand
   Circle.new(center, mass, radius, color, velocity, 0.6)
 end
 
