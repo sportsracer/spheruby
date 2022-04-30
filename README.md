@@ -8,7 +8,7 @@ Little toy project I made to teach myself the basics of Ruby.
 
 ## Installation
 
-Tested on Ruby 2.7.4.
+Tested on Ruby 3.1.1.
 
 Uses the [Gosu library](https://github.com/gosu/gosu) for graphics. It requires SDL 2 as a system dependency. To install
 on Mac:
