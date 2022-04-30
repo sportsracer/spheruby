@@ -23,7 +23,7 @@ module Gosu
       while ang < 360.0
         next_ang = ang + ai
         next_next_ang = next_ang + ai
-        _draw_circular_slice(radius, ang, next_ang, next_next_ang, color, z: z, mode: mode)
+        _draw_circular_slice(radius, ang, next_ang, next_next_ang, color, z:, mode:)
         ang = next_next_ang
       end
     end
