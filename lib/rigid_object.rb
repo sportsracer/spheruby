@@ -15,11 +15,9 @@ class RigidObject
     super()
     @center = center
     @mass = mass
-    @velocity = velocity || Vector[0, 0]
+    @velocity = velocity || Vector.zero(2)
     @bounciness = bounciness
-
-    @acceleration = Vector[0, 0]
-    @nudge = Vector[0, 0]
+    reset_acceleration_nudge
   end
 
   attr_accessor :center, :mass, :velocity, :bounciness
@@ -31,9 +29,7 @@ class RigidObject
   def update!
     @velocity += @acceleration
     @center += @velocity + @nudge
-
-    @acceleration[0] = @acceleration[1] = 0
-    @nudge[0] = @nudge[1] = 0
+    reset_acceleration_nudge
   end
 
   def interact!(other)
@@ -95,5 +91,12 @@ class RigidObject
     bounciness = [other.bounciness, @bounciness].min
     impulse = (1 + bounciness) * vel_along_normal
     impulse / (1 / other.mass + 1 / @mass)
+  end
+
+  private
+
+  def reset_acceleration_nudge
+    @acceleration = Vector.zero(2)
+    @nudge = Vector.zero(2)
   end
 end

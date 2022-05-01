@@ -54,13 +54,13 @@ def create_scene
   (1..num_objects).each do |i|
     # Compute an angle to space out objects around the center of the screen
     angle = 360 / num_objects * i
-    scene.add_object(make_random_object(angle))
+    scene << make_random_object(angle)
   end
   scene
 end
 
 def create_camera
-  Camera.new(Vector[0, 0], 0.5)
+  Camera.new(Vector.zero(2), 0.5)
 end
 
 w = Window.new(create_scene, create_camera, options[:width], options[:height])

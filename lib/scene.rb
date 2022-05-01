@@ -8,9 +8,7 @@ class Scene
     @objects = []
   end
 
-  def add_object(object)
-    @objects.append(object)
-  end
+  def <<(object) = @objects << object
 
   def update!
     interact_objects
