@@ -17,9 +17,7 @@ class Scene
     @objects.each(&:update!)
   end
 
-  def draw
-    @objects.each(&:draw)
-  end
+  def draw = @objects.each(&:draw)
 
   private
 

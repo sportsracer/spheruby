@@ -4,6 +4,7 @@ source 'https://rubygems.org'
 
 # runtime
 gem 'gosu'
+gem 'matrix'
 
 # development
 gem 'rake', require: false

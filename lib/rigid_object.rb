@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'vector_reflect'
+require_relative 'vector'
 
 ##
 # Object with a center of mass and motion.
@@ -45,9 +45,7 @@ class RigidObject
 
   ##
   # Calculate whether this object collides with another. Return surface point and normal vector, or nil.
-  def collision(_)
-    raise 'Not implemented'
-  end
+  def collision(_) = raise 'Not implemented'
 
   protected
 

@@ -11,7 +11,8 @@ class Camera
 
   def transform(&block)
     Gosu.scale(@scale, @scale) do
-      Gosu.translate(-@center[0], -@center[1]) do
+      @center => x, y
+      Gosu.translate(-x, -y) do
         block.call
       end
     end

@@ -13,9 +13,7 @@ class Window < Gosu::Window
     @camera = camera
   end
 
-  def update
-    @scene.update!
-  end
+  def update = @scene.update!
 
   def window_transform(&block)
     translate(width / 2, height / 2) do

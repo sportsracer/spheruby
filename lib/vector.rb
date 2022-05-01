@@ -11,4 +11,8 @@ class Vector
 
     self - normal * 2 * dot(normal)
   end
+
+  ##
+  # Deconstruct vector to array for use in pattern matching
+  def deconstruct = to_a
 end

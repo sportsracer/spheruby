@@ -1,4 +1,4 @@
-FROM ruby:2.7.4-slim
+FROM ruby:3.1.1-slim
 
 # Install SDL2
 RUN apt-get update && \
